@@ -139,7 +139,7 @@ const ModalMenu = (props) => {
         animationType="slide"
         transparent={true}
         cancelable = {true}
-        visible={state.reducerOne.modalVisible}
+        visible={state.reducerOne.modalVisible === undefined ? false : state.reducerOne.modalVisible}
         onShow={handleShowModal}
         onRequestClose={() => { dispatch({type : 'toggleModalVisible'})} }
         >

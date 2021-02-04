@@ -39,7 +39,7 @@ const index = () => {
     return (
         <View style={styles.container}>
             <ModalMenu 
-                modalVisible={state.reducerOne.modalVisible}
+                modalVisible={state.reducerOne.modalVisible === undefined ? false : state.reducerOne.modalVisible}
                 setModalVisible={setModalVisible}
                 setModalSelectedItem={setModalSelectedItem}
                 data={categoryData}/>

@@ -82,18 +82,31 @@ const SignUpScreen = ({navigation}) => {
         });
     }
 
+    const warnUser = (message) =>{
+            Alert.alert(
+                "Signup Failed",
+                message,
+                [
+                { text: "OK",onPress: () => setLoadingVisible(false)}
+                ],
+                { cancelable: false }
+        );
+    }
 
+    
 
     const handleError = (error) => {
+        //setLoadingVisible(false)
+
         switch(error.code) {
             case 'auth/email-already-in-use':
-                Alert.alert('Email already in use !')
+                warnUser('Email already in use !')
                 break;
             case 'auth/invalid-display-name':
-                Alert.alert('Username Incorrect !')
+                warnUser('Username Incorrect !')
                 break;
             default:
-                Alert.alert(error.message)
+                warnUser(error.message)
         }
     }
     
@@ -104,9 +117,9 @@ const SignUpScreen = ({navigation}) => {
             .doc(user.userID)
             .set(user)
             .then(() => {
-                setLoadingVisible(false)
+                //setLoadingVisible(false)
             }).catch(err => {
-                setLoadingVisible(false)
+                //setLoadingVisible(false)
             })
     }
     
@@ -130,7 +143,7 @@ const SignUpScreen = ({navigation}) => {
                 saveToFireStore(tempUser);
                 return tempUser;
             })
-            .catch(err => console.log(err) )
+            .catch(err => {} )
         } catch (err) {
             handleError(err);
 

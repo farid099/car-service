@@ -29,7 +29,6 @@ export default function MainScreen() {
       .doc(result.claims.user_id)
       .get()
       .then(result => {
-        console.log(result.data())
         setUser(result.data())
       })      
   }
@@ -40,10 +39,8 @@ export default function MainScreen() {
   useEffect(() => {
     const subscriber = Firebase.auth().onAuthStateChanged(user => {
       if (user != null) {
-        console.log("in")
           setUserInfo()
       } else {
-        console.log("out")
         setUser(null)
       }
     });
